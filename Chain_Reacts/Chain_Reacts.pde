@@ -12,10 +12,20 @@ void setup() {
 void draw() {
   background(0);
   for (Ball b : balls) {
-    color c = color(b.c1, b.c2, b.c3);
+    color c = b.c;
     fill(c);
     b.deflect();
-    b.move();
-    ellipse(b.x,b.y,20,20);
+    b.act();
+    ellipse(b.x, b.y, 20, 20);
+  }
+}
+
+void changeState(Ball b) {
+  for (Ball ba : balls) {
+    if (ba.state == 1 || ba.state == 2) {
+      if (abs(ba.x-b.x) < (ba.radius + b+radius) && (abs(ba.y-ba.y) < ba.radius + b.radius)) {
+        b.state = 1;
+      }
+    }
   }
 }
