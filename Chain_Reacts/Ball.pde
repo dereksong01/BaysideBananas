@@ -1,34 +1,33 @@
 class Ball {
 
-  float x, y;
-  int angle, speed, colour;
+  int x, y;
+  int xVel, yVel;
+  int c1, c2, c3;
 
   Ball() {
-    angle = (int) (Math.random() * 360);
-    speed = (int) (Math.random() * 11);
-    colour = (int) (Math.random() * 256);
+    xVel = (int) (Math.random() * 10 + 1);
+    yVel = (int) (Math.random() * 10 + 1);
+    
+    c1 = (int) (Math.random() * 256);
+    c2 = (int) (Math.random() * 256);
+    c3 = (int) (Math.random() * 256);
 
-    x = (float) (Math.random() * 600 - 99);
-    y = (float) (Math.random() * 600 - 99);
+    x = (int) (Math.random() * 581 + 10);
+    y = (int) (Math.random() * 581 + 10);
   }
 
   void move() {
-    x += speed*cos(angle);
-    y += speed*sin(angle);
+    x += xVel;
+    y += yVel;
   }
   
   void deflect() {
-    if (x >= 590) {
-      angle = (int) (Math.random() * 360); //these are only temporary
+    if (x > 590 || x < 10) {
+      xVel = -1 * xVel;
     }
-    else if (x <= 10) {
-      angle = (int) (Math.random() * 360);
-    }
-    else if (y >= 590) {
-      angle = (int) (Math.random() * 360);
-    }
-    else if (y <= 10) {
-      angle = (int) (Math.random() * 360);
+    else if (y > 590 || y < 10) {
+      yVel = -1 * yVel;
     }
   }
+  
 }
