@@ -12,20 +12,40 @@ void setup() {
 void draw() {
   background(0);
   for (Ball b : balls) {
+    changeState(b);
     color c = b.c;
     fill(c);
     b.deflect();
     b.act();
-    ellipse(b.x, b.y, 20, 20);
+    ellipse(b.x, b.y, b.radius * 2, b.radius * 2);
   }
 }
 
 void changeState(Ball b) {
-  for (Ball ba : balls) {
-    if (ba.state == 1 || ba.state == 2) {
-      if (abs(ba.x-b.x) < (ba.radius + b+radius) && (abs(ba.y-ba.y) < ba.radius + b.radius)) {
-        b.state = 1;
+  if (b.state == 0) {
+    for (Ball ba : balls) {
+      if (ba.state == 1 || ba.state == 2) {
+        if (abs(ba.x-b.x) < (ba.radius + b.radius) && (abs(ba.y-b.y) < ba.radius + b.radius)) {
+          b.state = 1;
+          return;
+        }
       }
     }
   }
+  if (b.radius == b.MAX_RADIUS && b.state == 1) {
+    b.state = 2;
+  } else if (b.state == 2 && b.radius == 0) {
+    b.state = 3;
+  }
+}
+
+void mouseClicked() {
+  Ball[] temp = new Ball[balls.length + 1];
+  int counter = 0;
+  for (Ball b : balls) {
+    temp[counter] = b;
+    counter++;
+  }
+  temp[temp.length - 1] = new Ball(1, mouseX, mouseY);
+  balls = temp;
 }

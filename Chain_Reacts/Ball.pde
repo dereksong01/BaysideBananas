@@ -13,7 +13,7 @@ class Ball {
   color c;
   int state;
 
-  Ball(int s) {
+  Ball() {
     xVel = (float) (Math.random() * 10 + 1);
     yVel = (float) (Math.random() * 10 + 1);
 
@@ -24,18 +24,31 @@ class Ball {
 
     radius = 10;
 
+    state = 0;
+  }
+  
+  Ball(int s, float _x, float _y) {
+    x = _x;
+    y = _y;
+    xVel = 0;
+    yVel = 0;
     state = s;
+    radius = 0;
+    c = color((int) (Math.random() * 266), (int) (Math.random() * 266), (int) (Math.random() * 266));
   }
 
   void act() {
     if (state == 0) {
       x += xVel; 
       y += yVel;
-    } else if (state == 1) {
+    } 
+    else if (state == 1) {
       radius += CHANGE_FACTOR;
-    } else if (state == 2) {
+    } 
+    else if (state == 2) {
       radius -= CHANGE_FACTOR;
-    } else if (state == 3) {
+    } 
+    else if (state == 3) {
       return;
     }
   }
