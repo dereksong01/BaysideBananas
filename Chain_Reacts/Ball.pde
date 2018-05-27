@@ -14,8 +14,8 @@ class Ball {
   int state;
 
   Ball() {
-    xVel = (float) (Math.random() * 10 + 1);
-    yVel = (float) (Math.random() * 10 + 1);
+    xVel = (float) (Math.random() * 7 + 3);
+    yVel = (float) (Math.random() * 7 + 3);
 
     c = color((int) (Math.random() * 266), (int) (Math.random() * 266), (int) (Math.random() * 266));
 

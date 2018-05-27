@@ -25,7 +25,7 @@ void changeState(Ball b) {
   if (b.state == 0) {
     for (Ball ba : balls) {
       if (ba.state == 1 || ba.state == 2) {
-        if (abs(ba.x-b.x) < (ba.radius + b.radius) && (abs(ba.y-b.y) < ba.radius + b.radius)) {
+        if (sqrt(abs(ba.x-b.x)*abs(ba.x-b.x) + abs(ba.y-b.y)*abs(ba.y-b.y)) < (ba.radius + b.radius)) {
           b.state = 1;
           return;
         }
